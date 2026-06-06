@@ -1,0 +1,109 @@
+% !TEX TS-program = xelatex
+
+\renewcommand{\baselinestretch}{1.4}
+
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{xepersian}
+\usepackage{calc}
+\usepackage{eso-pic}
+
+\settextfont[BoldFont = *Bd,
+  ItalicFont = *It,
+  Scale=1,
+  BoldItalicFont = *BdIt,
+  Path={./template/font/},
+  Extension = .ttf,
+  Color=black
+]{XB Niloofar}
+\setlatintextfont[Scale=0.85, Color=black]{Times New Roman}
+
+\definecolor{darkblue}{rgb}{.204,.353,.541}
+\definecolor{lightblue}{RGB}{210, 227, 245}
+
+\newfontfamily\subsubsectionfont[
+  Scale=1,
+  Path={./template/font/},
+  Extension = .ttf,
+  Color=black
+]{XB Titre}
+
+\newcommand{\sectionbox}[1]{
+  \begin{tcolorbox}[colback=lightblue, colframe=lightblue, width=\linewidth, sharp corners]
+    \color{darkblue} \eighteenpt #1
+  \end{tcolorbox}
+}
+
+\titleformat{\section}
+{\eighteenpt}{} {0em} {\subsubsectionfont \sectionbox}
+\titlespacing{\section}{0pt}{0pt}{0pt}
+\titleformat{\subsection}
+{\color{darkblue}\sixteenpt\bfseries}
+{\thesubsection}{1em}
+{}
+
+\newlength{\PageFrameTopMargin}
+\newlength{\PageFrameBottomMargin}
+\newlength{\PageFrameLeftMargin}
+\newlength{\PageFrameRightMargin}
+
+\setlength{\PageFrameTopMargin}{1cm}
+\setlength{\PageFrameBottomMargin}{1cm}
+\setlength{\PageFrameLeftMargin}{1cm}
+\setlength{\PageFrameRightMargin}{1cm}
+
+\makeatletter
+
+\newlength{\Page@FrameHeight}
+\newlength{\Page@FrameWidth}
+\AddToShipoutPicture{
+  \setlength{\Page@FrameHeight}{\paperheight-\PageFrameTopMargin-\PageFrameBottomMargin}
+  \setlength{\Page@FrameWidth}{\paperwidth-\PageFrameLeftMargin-\PageFrameRightMargin}
+  \put(\strip@pt\PageFrameLeftMargin,\strip@pt\PageFrameTopMargin){
+    {\framebox(\strip@pt\Page@FrameWidth, \strip@pt\Page@FrameHeight){}}
+  }
+}
+\makeatother
+
+\newcommand{\sixteenpt}{\fontsize{16pt}{18pt}\selectfont}
+\newcommand{\eighteenpt}{\fontsize{18pt}{20pt}\selectfont}
+\newcommand{\twentytwopt}{\fontsize{22pt}{24pt}\selectfont}
+\newcommand{\twentyeightpt}{\fontsize{28pt}{30pt}\selectfont}
+
+\makeatletter
+\def\maketitle{
+  \begin{center}
+    \begin{center}
+    \includegraphics[width=3cm]{template/img/logo.png} \\[0.5cm] 
+    
+    {\sixteenpt{\textbf{دانشگاه تهران}}} \\
+    {\sixteenpt{\textbf{دانشکدگان علوم}}} \\
+    {\sixteenpt{\textbf{دانشکده ریاضی، آمار و علوم کامپیوتر}}}
+\end{center}
+
+    \vspace{5cm}
+    {\twentyeightpt{\textbf{داده‌کاوی}}}\\
+
+    \vspace{1.5cm}
+    {\twentytwopt{\textbf{پروژه \assignNum}}}\\
+
+    \vspace{3cm}
+    {\sixteenpt{گروه ۱}}\\
+    {\sixteenpt{\@author}}\\[2em]
+
+    {\sixteenpt{شماره دانشجویی}}\\
+    {\sixteenpt{\SNum}}\\
+
+    \vspace{1cm}
+    {\normalsize\@date}
+  \end{center}
+}
+\makeatother
